@@ -215,7 +215,7 @@ a.pub:hover .go span { transform: translate(2px,-2px); }
 .contact h2 { font: 800 clamp(48px, 9vw, 120px)/.9 var(--display); letter-spacing: -.05em; margin: 0 0 18px; }
 .contact h2 span { color: var(--c1); }
 .contact p { color: var(--muted); max-width: 50ch; margin: 0 0 32px; font-size: 18px; }
-.channels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.channels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; gap: 12px; }
 .channels > * { display: grid; gap: 8px; padding: 22px; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; text-align: left; cursor: pointer; transition: transform .4s var(--ease), border-color .3s; min-width: 0; }
 .channels > *:hover { transform: translateY(-4px); border-color: var(--c1); }
 .channels .k { font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
@@ -311,9 +311,8 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
   <section class="contact" id="contact">
     <div class="wrap">
       <h2 data-reveal>Let's <span>talk.</span></h2>
-      <p data-reveal>Open to machine learning and data science roles and research collaborations. Email is the fastest way to reach me.</p>
+      <p data-reveal>Open to machine learning and data science roles and research collaborations. LinkedIn is the fastest way to reach me.</p>
       <div class="channels" data-reveal>
-        <button id="copyEmail" type="button"><span class="k">Email · click to copy</span><span class="v" id="emailText">puri.sahas@gmail.com</span><span class="h" id="copyHint" aria-live="polite"></span></button>
         <a href="https://linkedin.com/in/sahaspuri" target="_blank" rel="noopener"><span class="k">LinkedIn</span><span class="v">in/sahaspuri ↗</span><span class="h"></span></a>
         <a href="https://github.com/Sp-git8" target="_blank" rel="noopener"><span class="k">GitHub</span><span class="v">Sp-git8 ↗</span><span class="h"></span></a>
       </div>
@@ -803,12 +802,6 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
   const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; e.target.classList.remove('pre'); e.target.querySelectorAll('[data-count]').forEach(countUp); if (e.target.dataset.count) countUp(e.target); io.unobserve(e.target); }), { rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('[data-reveal]').forEach(el => { if (!reduce && el.getBoundingClientRect().top > innerHeight * .95) el.classList.add('pre'); io.observe(el); });
 
-  /* copy email */
-  const hint = $('#copyHint');
-  $('#copyEmail').addEventListener('click', () => {
-    const sel = () => { const r = document.createRange(); r.selectNodeContents($('#emailText')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); hint.textContent = 'Selected. Press ⌘C / Ctrl+C'; };
-    try { navigator.clipboard.writeText('puri.sahas@gmail.com').then(() => { hint.textContent = 'Copied'; setTimeout(() => hint.textContent = '', 2000); }, sel); } catch (e) { sel(); }
-  });
 })();
 </script>
 
